@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Промышленные квадрокоптеры</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Стилизация Header с использованием Flexbox */
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+
+        /* Блоки в шапке */
+        .block img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .block2 p,
+        .block3 p,
+        .block6 p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .block6 p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .block4 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .block4 img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .block7 button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .block7 button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Навигация и меню */
+        nav {
+            width: 100%;
+            background-color: red;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 20px;
+        }
+
+        .menu > li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu > li > a.link {
+            padding: 0 65px;
+            font-weight: 500;
+            color: white;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .menu > li > a.link:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Выпадающее подменю первого уровня */
+        .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            visibility: hidden;
+            opacity: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 100;
+            min-width: 400px;
+            padding: 20px;
+        }
+
+        .menu > li:hover .sub-menu {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Второй уровень меню */
+        .has-submenu-lvl2 {
+            position: relative;
+        }
+
+        .sub-menu-lvl2 {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            visibility: hidden;
+            opacity: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s, visibility 0.3s;
+            min-width: 200px;
+            padding: 15px;
+            z-index: 101;
+            height:200px;
+        }
+
+        .has-submenu-lvl2:hover > .sub-menu-lvl2 {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Стилизация ссылок в меню */
+        .sub-menu ul li {
+            margin-bottom: 10px;
+        }
+
+        .sub-menu ul li a {
+            padding: 8px 0;
+            display: block;
+            font-size: 14px;
+            color: #333;
+            transition: color 0.3s;
+        }
+
+        .sub-menu ul li a:hover {
+            color: #007bff;
+        }
+
+        .has-submenu-lvl2 > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Добавляем стрелку для пунктов с подменю */
+        .has-submenu-lvl2 > a::after {
+            content: "›";
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        /* ИСПРАВЛЕНО: Основной блок с фоном */
+        .element {
+            width: 100%;
+            height: 100vh;
+            background: url('static/orig.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding-top: 50px;
+            position: relative;
+        }
+
+        /* ИСПРАВЛЕНО: Текст в hero-секции */
+        .element p span:first-child {
+            font-size: 40px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .element p strong {
+            color: #2ecc71; /* Более приятный зеленый */
+            font-size: 48px;
+        }
+
+        .element p span:last-child {
+            color: #0000FF;
+            font-size: 36px;
+        }
+
+
+        .wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .payment-info,
+        .payment-info1,
+        .payment-info2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 205px;
+            min-width: 300px;
+            max-width: 400px;
+            flex-shrink: 0;
+            white-space: nowrap;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .payment-icon {
+             margin-left: -170px;  /* Сдвинуть влево (отрицательное значение) */
+    margin-right: 10px; /* Сдвинуть вправо (увеличить отступ) */
+    margin-top: 15px;   /* Сдвинуть вниз */
+    margin-bottom: 5px; /* Сдвинуть вверх */
+
+
+
+        }
+
+        .payment-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .payment-text strong {
+            color: #12b7b7;
+        }
+
+
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+             position: relative;
+            margin-top: -400px;
+            justify-content: center;
+            width: 100%;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .buttons-container button {
+            padding: 20px 50px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            min-width: 250px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .buttons-container button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .buttons-container button:nth-child(2) {
+            background-color: #28a745;
+        }
+
+        .buttons-container button:nth-child(2):hover {
+            background-color: #218838;
+        }
+
+        .container h1 {
+            text-align: center;
+            text-transform: uppercase;
+            margin: 40px 0;
+        }
+
+        /* Картинки с рамками */
+        .Frame, .Frame2, .Frame3 {
+            width: 300px;
+            height: 240px;
+            background-image: url('//m-files.cdn1.cc/lpfile/7/9/3/79375542fd2255331a7f11e84a510471/-/crop/138x99x475x356/-/resize/317/-/quality/100/f.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            box-shadow: inset 0 0 0 10px white, inset 0 0 0 12px rgba(0, 0, 255, 0.3);
+            border: 2px solid #333;
+            margin: 20px auto;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px 0;
+        }
+
+
+        .Helicopter_Shop {
+            background-image: url('https://avatars.mds.yandex.net/i?id=e491251ece32cf2289788c1a3f7c061b_l-16110296-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            margin-top: 50px;
+            text-transform: uppercase;
+            color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .image-text {
+            max-width: 700px;
+            margin-left: 80px;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            line-height: 1.7;
+            font-size: 18px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+
+        .track {
+            background-image: url('https://avatars.mds.yandex.net/i?id=963025520db2fa6ef64d17bf8c9edf32_l-5712428-images-thumbs&n=13');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .image1, .image2, .image3, .image4 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            bottom: 50px;
+        }
+
+        .image-caption1 {
+            position: absolute;
+            bottom: -50px;
+            left: 200%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: #8e2828;
+            white-space: nowrap;
+            background-color: rgba(255,255,255,0.8);
+            padding: 5px 237px 0px 0px;
+            border-radius: 5px;
+        }
+
+        .image1 {
+            background-image: url('https://m-files.cdn1.cc/lpfile/6/7/f/67ffe5d2ef7cae5e3a69f4adb6f6c634/-/scale/x2/-/crop/0x0x900x880/-/resize/42/-/quality/100/f.png');
+            left: 20%;
+        }
+
+        .image2 {
+            background-image: url('https://m-files.cdn1.cc/lpfile/9/d/6/9d640a364b3eae814e298b1818ce164a/-/scale/x2/-/crop/0x0x981x984/-/resize/42/-/quality/100/f.png');
+            left: 40%;
+        }
+
+        .image3 {
+            background-image: url('https://m-files.cdn1.cc/lpfile/8/6/d/86d70c02a51e5e86dde98ff3438a1bd9/-/scale/x2/-/crop/0x0x802x980/-/resize/38/-/quality/100/f.png');
+            left: 60%;
+        }
+
+        .image4 {
+            background-image: url('https://m-files.cdn1.cc/lpfile/7/8/1/7817aee779c0d8140cfd50b82b286b25/-/scale/x2/-/crop/0x0x860x768/-/resize/59/-/quality/100/f.png');
+            left: 80%;
+        }
+
+
+        .modal-callback {
+            position: fixed;
+            width: 350px;
+            margin-left: -175px;
+            left: 50%;
+            top: -100%;
+            padding: 30px;
+            background: #fff;
+            border: none;
+            z-index: 10000;
+            transition: top 0.5s ease;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        }
+
+        .modal-callback h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .modal-callback input {
+            display: block;
+            width: 100%;
+            margin: 0 0 15px 0;
+            padding: 14px 12px;
+            border: 2px solid #eef2f7;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+
+        .modal-callback input:focus {
+            border-color: #ff9900;
+            outline: none;
+        }
+
+        .modal-callback button[type="submit"] {
+            background: #ff9900;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 14px;
+            width: 100%;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .modal-callback button[type="submit"]:hover {
+            background: #e68a00;
+        }
+
+        .modal-callback .close-btn-callback {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+        }
+
+        .modal-callback .close-btn-callback:hover {
+            color: #333;
+        }
+
+        .overlay-callback {
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: rgba(0,0,0,0.6);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .callback-button {
+            background: #ff9900;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            position: relative;
+            top: 80px;
+            left: 0px;
+        }
+
+        .callback-button:hover {
+            background: #e68a00;
+        }
+
+
+
+
+
+
+            font-size: 1.3rem;
+        }
+
+
+        .faq-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 98px;
+            color: #1a1a1a;
+        }
+
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            font-weight: 300;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] .faq-question::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            padding: 0 24px 84px 24px;
+            color: #4a4a4a;
+            line-height: 1.6;
+            border-top: 1px solid #f0f0f0;
+            margin-top: -4px;
+        }
+
+        .maps {
+            background: linear-gradient(to right, #56ab2f, #a8e063);
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .maps h1 {
+            color: #f0f0f0;
+            font-size: 45px;
+            margin-bottom: 30px;
+        }
+
+        .maps iframe {
+            width: 80vw;
+            height: 60vh;
+            filter: invert(100%);
+        }
+
+        .kartinka {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://m-files.cdn1.cc/lpfile/e/7/9/e797f7c31b1bb93eefc58499a803611f/-/scale/x2/-/crop/0x0x1036x677/-/resize/125/-/quality/100/f.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            margin-left: 100px;
+        }
+
+        .Text {
+            margin-top: 1px;
+            margin-left: 100px;
+            line-height: 0.6;
+        }
+
+        dl {
+            margin-left: 340px;
+            margin-top: -120px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 900px;
+        }
+
+        .custom-list h1 {
+            color: #2b6ac9;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            margin-top: -90px;
+        }
+
+        .custom-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: #808080;
+            border-radius: 50%;
+        }
+
+        .email-container {
+            margin-left: 60px;
+            margin-top: -40px;
+        }
+
+        .Message {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-right: 20px;
+            margin-top: -12px;
+        }
+
+        .Gift h1 {
+            text-align: center;
+            color: #456eb4;
+            font-weight: bold;
+            font-size: 100px;
+            margin: -400px 0px 0px 800px;
+        }
+
+        .Questions h1 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 50px 0;
+        }
+
+        .photo {
+            margin-top: -500px;
+            width: 600px;
+            height: 400px;
+            background-image: url('https://m-files.cdn1.cc/lpfile/9/9/1/9915b1ccbb8cfb27b79ce06f3969899f/-/scale/x2/-/crop/0x0x585x425/-/resize/366/-/quality/100/f.png');
+
+        }
+
+        .photo1 {
+            position: relative;
+            top: 260px;
+            left: 20px;
+            transform: rotate(320deg);
+            width: 200px;
+            height: 200px;
+            background-image: url('https://m-files.cdn1.cc/lpfile/3/2/3/323a6625f322217116495f0910b249cb/-/crop/0x0x286x255/-/resize/206/-/quality/100/f.png');
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="block">
+        <img src="https://m-files.cdnvideo.ru/lpfile/f/2/a/f2a8b381249b9648a35666ae222b4e0e.svg?64043774" alt="Logo">
+    </div>
+
+    <div class="block2">
+        <p style="white-space: pre-line">Промышленные квадрокоптеры<br>с доставкой по России</p>
+    </div>
+
+    <div class="block3">
+        <p>Звоните ПН-ПТ 9:00-20:00</p>
+    </div>
+
+    <div class="block4">
+        <a href="https://t.me/username_bot" target="_blank">
+            <img src="https://img.icons8.com/?size=100&id=oWiuH0jFiU0R&format=png&color=000000" alt="Telegram" width="30">
+        </a>
+        <a href="https://wa.me/номер_телефона" target="_blank">
+            <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" width="30">
+        </a>
+    </div>
+
+    <div class="block6">
+        <p>8(800) 555-65-77</p>
+    </div>
+
+    <div class="block7">
+        <button class="button">Наведи на меня</button>
+    </div>
+
+    <nav>
+        <ul class="menu">
+            <li class="has-submenu">
+                <a href="#" class="link">Квадрокоптеры</a>
+                <div class="sub-menu">
+                    <div class="sub-menu1">
+                        <ul>
+                            <li class="has-submenu-lvl2">
+                                <a href="#" class="link">DJI</a>
+                                <ul class="sub-menu-lvl2">
+                                    <li><a href="#" class="link">Квадрокоптеры DJI</a></li>
+                                    <li><a href="#" class="link">Квадрокоптеры DJI Mavic</a></li>
+                                    <li><a href="#" class="link">Квадрокоптеры DJI Matrice</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="link">Дроны военные</a></li>
+                            <li><a href="#" class="link">Профессионально-промышленные</a></li>
+                            <li><a href="#" class="link">Сельскохозяйственные</a></li>
+                            <li><a href="#" class="link">С тепловизором</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="link">Аэроскопы и антидронные системы</a>
+            </li>
+            <li class="has-submenu">
+                <a href="#" class="link">Аксессуары и ПО</a>
+                <div class="sub-menu">
+                    <div class="sub-menu1">
+                        <ul>
+                            <li><a href="#" class="link">Пульты</a></li>
+                            <li><a href="#" class="link">Аккумуляторы и ЗУ</a></li>
+                            <li><a href="#" class="link">Камеры DJI Zenmuse</a></li>
+                            <li><a href="#" class="link">Сканирующие системы</a></li>
+                            <li><a href="#" class="link">Прочие аксессуары</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-submenu">
+                <a href="#" class="link">Информация</a>
+                <div class="sub-menu">
+                    <div class="sub-menu1">
+                        <ul>
+                            <li><a href="#" class="link">Оплата и доставка</a></li>
+                            <li><a href="#" class="link">Обзоры и советы</a></li>
+                            <li><a href="#" class="link">Вопросы и ответы</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#" class="link">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<div class="element">
+    <p style="text-transform: uppercase; line-height: 0.8; margin: 0; padding: 0;">
+        <span style="font-family: 'Times New Roman', Times, serif">Профессиональные</span>
+        <strong style="display: block;">Квадрокоптеры</strong>
+        <span style="color: #0000FF; display: block;">С Тепловизором/Для Геодезии и Картографии</span>
+    </p>
+</div>
+
+<div class="wrapper">
+    <div class="payment-info">
+        <svg class="payment-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
+            <g>
+                <path fill="#ff9900" d="M0,0v54h54V0H0z M52,52H2V2h50V52z"></path>
+                <path fill="#ff9900" d="M18.293,44.707C18.488,44.902,18.744,45,19,45s0.512-0.098,0.707-0.293L37.414,27L19.707,9.293 c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414L34.586,27L18.293,43.293C17.902,43.684,17.902,44.316,18.293,44.707z"></path>
+            </g>
+        </svg>
+        <div class="payment-text"><strong>Оплата после получения и проверки</strong> товара</div>
+    </div>
+
+    <div class="payment-info1">
+    <svg class="payment-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
+        <g>
+            <path fill="#ff9900" d="M0,0v54h54V0H0z M52,52H2V2h50V52z"></path>
+            <path fill="#ff9900" d="M18.293,44.707C18.488,44.902,18.744,45,19,45s0.512-0.098,0.707-0.293L37.414,27L19.707,9.293 c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414L34.586,27L18.293,43.293C17.902,43.684,17.902,44.316,18.293,44.707z"></path>
+        </g>
+    </svg>
+    <div class="payment-text"><strong>Оплата после получения и проверки</strong> товара</div>
+</div>
+
+    <div class="payment-info2">
+        <svg class="payment-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
+            <g>
+                <path fill="#ff9900" d="M0,0v54h54V0H0z M52,52H2V2h50V52z"></path>
+                <path fill="#ff9900" d="M18.293,44.707C18.488,44.902,18.744,45,19,45s0.512-0.098,0.707-0.293L37.414,27L19.707,9.293 c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414L34.586,27L18.293,43.293C17.902,43.684,17.902,44.316,18.293,44.707z"></path>
+            </g>
+        </svg>
+        <div class="payment-text">Представляем <strong>гарантию 1 год</strong></div>
+    </div>
+</div>
+
+<div class="buttons-container">
+    <button class="button">Подобрать комплект</button>
+    <button class="button">Получить консультацию</button>
+</div>
+
+<div class="container">
+    <h1>Квадрокоптеры в Москве</h1>
+</div>
+
+<div style="display: flex;    margin-left: 200px;  align-items: center; gap: 90px; padding: 10px; flex-wrap: wrap;">
+    <div class="image-container">
+        <div class="Frame"></div>
+        <p class="image-caption">Подпись к первой картинке</p>
+    </div>
+    <div class="image-container">
+        <div class="Frame2"></div>
+        <p class="image-caption">Подпись ко второй картинке</p>
+    </div>
+    <div class="image-container">
+        <div class="Frame3"></div>
+        <p class="image-caption">Подпись к третьей картинке</p>
+    </div>
+</div>
+
+<div class="wrapper1">
+    <div class="arrowone1">
+
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 59.414 59.414" width="118" height="118" style="enable-background:new 0 0 59.414 59.414;" xml:space="preserve">
+            <polygon points="58,15.56 29.707,43.853 1.414,15.56 0,16.975 29.707,46.682 59.414,16.975 "></polygon>
+        </svg>
+    </div>
+</div>
+
+<div class="Helicopter_Shop">
+    <div class="image-text">
+        <h1>Магазин Квадрокоптеров</h1>
+        <p>Наша компания ведет свою деятельность с 2016 года. Мы поставляем оригинальную технику DJI с гарантией 1 год от производителя. Имеем партнерскую сеть сервисных центров по всей России, тем самым можем производить ремонт в кратчайшие сроки. Вся техника в наличии и может быть доставлена уже сегодня (по Москве в течение дня, по РФ в течение 2-4 дней). Главное преимущество нашей компании – мы всегда доставляем нашу технику лично в руки (офис, предприятие). Оплата по факту получения. Можем при вас активировать и проверить работу оборудования, помочь в настройке и обучить работе.</p>
+    </div>
+</div>
+
+<div class="track">
+    <div class="image1">
+        <p class="image-caption1">Оплата при получении товара</p>
+    </div>
+    <div class="image2">
+        <p class="image-caption1">Оригинальная продукция DJI</p>
+    </div>
+    <div class="image3">
+        <p class="image-caption1">Представляем гарантию 1 год</p>
+    </div>
+    <div class="image4">
+        <p class="image-caption1">Скидки и бонусы при покупке</p>
+    </div>
+</div>
+
+<div class="photo">
+    <div class="photo1"></div>
+</div>
+
+<div class="Gift">
+    <h1>В подарок</h1>
+</div>
+
+<div class="message">
+    <p>При покупке дрона</p>
+</div>
+
+<div class="Gift1"></div>
+
+<div class="Gifi2">
+    <p>Интеллектуальная Батарея WB37</p>
+        <p>для пульта управления</p>
+</div>
+
+ <div class="buttons-container1">
+        <button class="button">Подобрать комплект</button>
+    </div>
+
+<div class="Questions">
+    <h1>Частые вопросы</h1>
+</div>
+
+<div class="faq-container">
+    <details class="faq-item">
+        <summary class="faq-question">Какие формы оплаты?</summary>
+        <div class="faq-answer">
+            <p>Наличными или безналичными. По договору. Вы можете оплатить как физ. лицо, ИП или Юр. Лицо</p>
+        </div>
+    </details>
+
+    <details class="faq-item">
+        <summary class="faq-question">Какая версия квадрокоптера? Будет ли она летать на нашей территории?</summary>
+        <div class="faq-answer">
+            <p>- Global, universal или всемирная версия, позволяющая использовать возможности квадрокоптера по всему миру, в том числе на территории РФ.</p>
+        </div>
+    </details>
+
+    <details class="faq-item">
+        <summary class="faq-question">Урал, Сибирь - туда тоже доставляете?</summary>
+        <div class="faq-answer">
+            <p>Да, наши сотрудники уже доставляли технику в такие города как: Екатеринбург, Новосибирск, Пермь, Красноярск, Томск, Иркутск и другие</p>
+        </div>
+    </details>
+
+    <details class="faq-item">
+        <summary class="faq-question">Можете ли вы организовать поставку техники, которая не представлена на вашем сайте?</summary>
+        <div class="faq-answer">
+            <p>Да, у нас есть возможность поставлять другую технику, связанную с нашим видом деятельности, которая не представлена на нашем сайте.</p>
+        </div>
+    </details>
+
+    <details class="faq-item">
+        <summary class="faq-question">Возможен ли самовывоз продукции?</summary>
+        <div class="faq-answer">
+            <p>Да, возможен в Москве, Ростове-на-Дону и Краснодаре</p>
+        </div>
+    </details>
+</div>
+
+<div class="maps">
+    <h1>Наш офис в Москве</h1>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.223529519574!2d37.58794431593087!3d55.75637998055302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5e738b6e3d%3A0x6b8b9c5d5e5b5b5b!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1771064989843!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<div class="kartinka"></div>
+
+<div class="Text">
+    <p>ИНН 616116593650</p>
+    <p>ОГРНИП 316619600125759</p>
+</div>
+
+<ul class="address-list">
+    <li><strong>Москва,</strong> Шмитовский пр-д 16с2</li>
+    <li><strong>Краснодар,</strong> Садовая ул.42</li>
+    <li><strong>Ростов-на-Дону,</strong> Пушкинская 181</li>
+</ul>
+
+<ul class="custom-list">
+    <li>Звоните ПН-ВС 9:00-20:00</li>
+</ul>
+
+<h1 class="phone-number">8 (800) 555-65-77</h1>
+<div class="Last">
+<svg  class="email-icon"  version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve" width="50" height="50">
+    <polygon points="60,50.234 60,9.944 39.482,30.536 "></polygon>
+    <polygon points="0,9.941 0,50.234 20.519,30.535 "></polygon>
+    <path d="M1.387,8.5l21.002,21.08c0.121,0.051,0.471,0.415,0.517,0.519l5.941,5.963c0.635,0.591,1.672,0.59,2.333-0.025l5.911-5.933 c0.046-0.105,0.4-0.473,0.522-0.524L58.615,8.5H1.387z"></path>
+    <path d="M38.07,31.954l-5.5,5.52c-0.73,0.68-1.657,1.019-2.58,1.019c-0.914,0-1.823-0.332-2.533-0.993l-5.526-5.546L1.569,51.5 h56.862L38.07,31.954z"></path>
+</svg>
+</div>
+<div class="email-container">
+    info@pro-aero.ru
+</div>
+
+</main>
+
+<!-- Кнопка открытия модального окна -->
+<div style="margin-top: -160px; margin-left:1300px;">
+    <button class="callback-button" onclick="openCallbackModal()">📞 Обратный звонок</button>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal-callback" id="callbackModal">
+    <span class="close-btn-callback" onclick="closeCallbackModal()">&times;</span>
+    <h2>Обратный звонок</h2>
+    <form id="callbackFormModal" onsubmit="return submitCallbackForm(event)">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="tel" placeholder="+7 (___) ___-__-__" required>
+        <button type="submit">Перезвоните мне</button>
+    </form>
+</div>
+
+<!-- Затемнение фона -->
+<div class="overlay-callback" id="callbackOverlay" onclick="closeCallbackModal()"></div>
+
+<script>
+    function openCallbackModal() {
+        var modal = document.getElementById('callbackModal');
+        var overlay = document.getElementById('callbackOverlay');
+        if (modal && overlay) {
+            modal.style.top = "50%";
+            overlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeCallbackModal() {
+        var modal = document.getElementById('callbackModal');
+        var overlay = document.getElementById('callbackOverlay');
+        if (modal && overlay) {
+            modal.style.top = "-100%";
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function submitCallbackForm(event) {
+        event.preventDefault();
+        var form = event.target;
+        var name = form.querySelector('input[type="text"]').value;
+        var phone = form.querySelector('input[type="tel"]').value;
+        alert('Спасибо, ' + name + '! Мы перезвоним вам по номеру ' + phone + ' в ближайшее время.');
+        form.reset();
+        closeCallbackModal();
+        return false;
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeCallbackModal();
+        }
+    });
+</script>
+
+<div class="Message">
+    <a href="https://t.me/username_bot" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=oWiuH0jFiU0R&format=png&color=000000" alt="Telegram" width="30">
+    </a>
+    <a href="https://wa.me/номер_телефона" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" width="30">
+    </a>
+</div>
+
+<div class="color-demo">
+    <span class="word-left copyright-text">© 2016-2024 «PROAERO». Все права защищены.</span>
+    <span class="zz">Политика конфиденциальности</span>
+    <span class="word word-right">Статьи</span>
+</div>
+
+
+
+
+</body>
+</html>
