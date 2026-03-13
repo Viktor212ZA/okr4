@@ -1,0 +1,16 @@
+*
+*::before {
+
+  box-sizing: border-box;
+}
+
+
+.box {
+
+
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  border: 10px solid red;
+}
+

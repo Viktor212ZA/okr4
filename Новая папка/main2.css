@@ -1,0 +1,78 @@
+.div {
+
+width: 200px;
+height: 200px;
+
+}
+
+
+.box1{
+
+
+padding: 30px;
+background-color: palevioletred;
+
+}
+
+
+.box2 {
+
+    padding: 10px 50px;
+    background: sandybrown;
+}
+
+
+.box3{
+
+
+    padding: 50px 100px 150px;
+    background-color: lightseagreen;
+
+}
+.box4 {
+
+
+    padding: 50px 100px 150px 200px;
+    background-color: seagreen;
+
+}
+
+
+.box5{
+
+    padding-top: 60px;
+    background-color: forestgreen;
+}
+
+
+.box6 {
+
+
+    padding-right: 60px;
+    background-color: cornflowerblue;
+}
+
+
+.box7 {
+
+
+    padding-bottom: 60px;
+    background-color: bisque;
+}
+.box8 {
+
+    padding-left: 60px;
+    background-color: darkcyan;
+}
+.box9 {
+
+    padding-block: 100px;
+    background-color: yellow;
+}
+
+.box10{
+
+    padding-inline: 100px;
+    background-color: tomato;
+    
+}

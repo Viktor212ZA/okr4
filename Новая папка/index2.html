@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Три слова в одной линии по углам</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Основной блок */
+        .block {
+            width: 600px;
+            height: 150px;
+            background-color: #ffffff;
+            border: 3px solid #2196F3;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            
+            /* Включаем Flexbox для выравнивания в одну линию */
+            display: flex;
+            justify-content: space-between; /* Равномерно распределяет элементы: первый слева, последний справа */
+            align-items: center; /* Выравнивает по вертикали по центру */
+            
+            /* Отступы внутри блока, чтобы слова не прилипали к краям */
+            padding: 0 20px;
+            
+            /* Для текста в центре (если добавим) */
+            color: #333;
+            
+            font-size: 1.3rem;
+        }
+
+        /* Стили для каждого слова */
+        .word {
+           
+            padding: 8px 16px;
+            border-radius: 20px;
+           
+            
+        }
+
+        /* Можно задать разные фоны для наглядности (опционально) */
+        .word-left {
+            /* Желтый */
+           
+        }
+        .word-center {
+            
+            border-color: #1b5e20;
+            
+        }
+        .word-right {
+             /* Красный */
+            border-color: #b71c1c;
+            
+        }
+
+        /* Дополнительно: текст-подсказка */
+        
+    </style>
+</head>
+<body>
+    <div class="block">
+        <span class="word word-left">Красный</span>   <!-- Слева -->
+        <span class="word word-center">Зеленый</span> <!-- По центру -->
+        <span class="word word-right">Синий</span>    <!-- Справа -->
+    </div>
+    
+  
+</body>
+</html>
